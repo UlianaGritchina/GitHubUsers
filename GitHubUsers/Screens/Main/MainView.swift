@@ -26,7 +26,6 @@ struct MainView_Previews: PreviewProvider {
 }
 
 
-
 extension MainView {
     
     private var usernameTF: some View {
@@ -44,7 +43,7 @@ extension MainView {
     }
     
     private var findButton: some View {
-        Button(action: {vm.findUser()}) {
+        Button(action: vm.findUser) {
             RoundedRectangle(cornerRadius: 15)
                 .frame(
                     width: UIScreen.main.bounds.width / 2,
@@ -78,9 +77,9 @@ extension MainView {
                 .frame(width: UIScreen.main.bounds.width / 2)
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Name").font(.headline)
-                    Text("Bio")
-                    Text("location")
+                    Text(vm.user.name ?? "noname").font(.headline)
+                    Text(vm.user.bio ?? "nobio")
+                    Text(vm.user.location ?? "nolocation")
                 }
                 .foregroundColor(.black)
                 .padding(.horizontal, 40)
