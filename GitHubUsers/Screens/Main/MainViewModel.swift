@@ -7,10 +7,10 @@ class MainViewModel: ObservableObject {
         avatar_url: "",
         html_url: "",
         repos_url: "",
-        name: "",
-        location: "",
-        bio: "",
-        public_repos: "",
+        name: "NAME",
+        location: "location",
+        bio: "bio",
+        public_repos: 0,
         followers: 0,
         following: 0,
         created_at: ""
@@ -25,7 +25,7 @@ class MainViewModel: ObservableObject {
     func findUser() {
         Task {
             do {
-                self.user = try await NetworkManager.shared.fetchUserBy(userName: "UlianaGritchina")
+                self.user = try await NetworkManager.shared.fetchUserBy(userName: username)
             } catch {
                 print(error)
             }

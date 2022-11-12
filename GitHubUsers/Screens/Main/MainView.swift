@@ -26,6 +26,7 @@ struct MainView_Previews: PreviewProvider {
 }
 
 
+//MARK: VIEW COMPONENTS
 extension MainView {
     
     private var usernameTF: some View {
@@ -62,7 +63,7 @@ extension MainView {
             RoundedRectangle(cornerRadius: 10)
                 .frame(
                     width: UIScreen.main.bounds.width - 80,
-                    height: UIScreen.main.bounds.width / 1.5
+                    height: UIScreen.main.bounds.width / 3
                 )
                 .foregroundColor(.white)
                 .shadow(color: .gray.opacity(0.4), radius: 5)
@@ -72,19 +73,15 @@ extension MainView {
     }
     
     private var userPrewiewContent: some View {
-        VStack {
-            Circle()
-                .frame(width: UIScreen.main.bounds.width / 2)
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(vm.user.name ?? "noname").font(.headline)
-                    Text(vm.user.bio ?? "nobio")
-                    Text(vm.user.location ?? "nolocation")
-                }
-                .foregroundColor(.black)
-                .padding(.horizontal, 40)
-                Spacer()
+        HStack {
+            Circle().frame(width: UIScreen.main.bounds.width / 4)
+            VStack(alignment: .leading, spacing: 10) {
+                Text(vm.user.name ?? "noname").font(.headline)
+                Text(vm.user.bio ?? "nobio")
+                Text(vm.user.location ?? "nolocation")
             }
+            .foregroundColor(.black)
+            Spacer()
         }
     }
     
