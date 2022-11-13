@@ -2,9 +2,7 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    let user: User
-    let userAvatarImageData: Data
-    let defoultImage: UIImage = UIImage(named: "Octocat")!
+    let vm: UserInfoViewModel!
     @Environment(\.presentationMode) var presentationMode
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
@@ -16,15 +14,11 @@ struct UserInfoView: View {
                     avatarImageView
                     Spacer()
                 }
-                VStack() {
+                ScrollView() {
                     userInfoView.padding(.top, height / 2.6)
-                    if let reposCount = user.public_repos {
-                        reposView
-                    }
+                    reposView
                     Spacer()
-                    
                 }
-                
             }
         }
     }
@@ -33,19 +27,22 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         UserInfoView(
-            user: User(
-                login: "login",
-                avatar_url: "",
-                html_url: "",
-                repos_url: "",
-                name: "name",
-                location: "location",
-                bio: "bio",
-                public_repos: 5,
-                followers: 5,
-                following: 5,
-                created_at: ""),
-            userAvatarImageData: Data()
+            vm: UserInfoViewModel(
+                user: User(
+                    login: "login",
+                    avatar_url: "",
+                    html_url: "",
+                    repos_url: "",
+                    name: "name",
+                    location: "location",
+                    bio: "bio",
+                    public_repos: 5,
+                    followers: 5,
+                    following: 5,
+                    created_at: ""
+                ),
+                avatarImageData: Data()
+            )
         )
     }
 }
@@ -53,7 +50,7 @@ struct UserInfoView_Previews: PreviewProvider {
 extension UserInfoView {
     
     private var avatarImageView: some View {
-        Image(uiImage: UIImage(data: userAvatarImageData) ?? defoultImage)
+        Image(uiImage: UIImage(data: vm.userAvatarImageData) ?? vm.defoultImage)
             .resizable()
             .scaledToFill()
             .overlay {
@@ -61,7 +58,7 @@ extension UserInfoView {
                     closeButton
                     Spacer()
                     HStack {
-                        Text(user.name ?? "")
+                        Text(vm.user.name ?? "")
                             .bold()
                             .font(.largeTitle)
                             .foregroundColor(.white)
@@ -77,26 +74,29 @@ extension UserInfoView {
     private var userInfoView: some View {
         HStack {
             VStack(alignment: .leading) {
-                if let bio = user.bio {
+                if let bio = vm.user.bio {
                     Text(bio).bold()
                 }
-                if let location = user.location {
+                if let location = vm.user.location {
                     Text(location)
                 }
-                if let followers = user.followers {
+                if let followers = vm.user.followers {
                     Text("Followers: \(followers)")
                 }
-                if let following = user.following {
+                if let following = vm.user.following {
                     Text("Following: \(following)")
                 }
             }
-            .font(.system(size: UIScreen.main.bounds.height / 40))
+            .font(.system(size: height / 40))
             Spacer()
         }
         .padding()
         .frame(width: width - 20)
-        .background(Color("card").cornerRadius(10))
-        .shadow(color: Color("shadow"), radius: 5)
+        .background(
+            Color("card")
+                .cornerRadius(10)
+                .shadow(color: Color("shadow"), radius: 5)
+        )
     }
     
     private var closeButton: some View {
@@ -119,13 +119,13 @@ extension UserInfoView {
     
     private var reposView: some View {
         VStack {
-            Text("Repos \(user.public_repos ?? 0)")
-                .font(.title)
+            Text("Repos \(vm.user.public_repos ?? 0)")
+                .font(.title2)
                 .bold()
                 .offset(y: 20)
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach((0..<(user.public_repos ?? 0)), id: \.self) { _ in
+                    ForEach((0..<(vm.user.public_repos ?? 0)), id: \.self) { _ in
                         RoundedRectangle(cornerRadius: 10)
                             .frame(
                                 width: width / 1.4,

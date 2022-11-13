@@ -14,6 +14,7 @@
 		0E29AD2E291D24A1008476A8 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E29AD2C291D24A1008476A8 /* MainViewModel.swift */; };
 		0E29AD30291D24A9008476A8 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E29AD2F291D24A9008476A8 /* UserInfoView.swift */; };
 		0E29AD32291D24B0008476A8 /* NewtworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E29AD31291D24B0008476A8 /* NewtworkManager.swift */; };
+		0E416CF329210AD7000983CD /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E416CF229210AD7000983CD /* UserInfoViewModel.swift */; };
 		0EB94AF3291E23D100F43FE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB94AF2291E23D100F43FE9 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		0E29AD2C291D24A1008476A8 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0E29AD2F291D24A9008476A8 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		0E29AD31291D24B0008476A8 /* NewtworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtworkManager.swift; sourceTree = "<group>"; };
+		0E416CF229210AD7000983CD /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		0EB94AF2291E23D100F43FE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				0E29AD2F291D24A9008476A8 /* UserInfoView.swift */,
+				0E416CF229210AD7000983CD /* UserInfoViewModel.swift */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				0E29AD2D291D24A1008476A8 /* MainView.swift in Sources */,
 				0E29AD19291D241C008476A8 /* GitHubUsersApp.swift in Sources */,
+				0E416CF329210AD7000983CD /* UserInfoViewModel.swift in Sources */,
 				0EB94AF3291E23D100F43FE9 /* User.swift in Sources */,
 				0E29AD2E291D24A1008476A8 /* MainViewModel.swift in Sources */,
 				0E29AD32291D24B0008476A8 /* NewtworkManager.swift in Sources */,

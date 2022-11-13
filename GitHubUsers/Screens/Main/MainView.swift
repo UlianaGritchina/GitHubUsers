@@ -20,7 +20,12 @@ struct MainView: View {
             }
             .navigationTitle("Find User")
             .fullScreenCover(isPresented: $vm.isShowingUserInfoView, content: {
-                UserInfoView(user: vm.user, userAvatarImageData: vm.avatarImageData)
+                UserInfoView(
+                    vm: UserInfoViewModel(
+                        user: vm.user,
+                        avatarImageData: vm.avatarImageData
+                    )
+                )
             })
         }
     }
