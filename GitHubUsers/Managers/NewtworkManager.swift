@@ -45,4 +45,18 @@ class NetworkManager {
         .resume() 
     }
     
+    func fetchRepos(stringUrl: String) async throws -> [Repository] {
+        guard let url = URL(string: stringUrl) else {
+            throw NetworkState.badURL
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        guard let repos = try? JSONDecoder().decode([Repository].self, from: data) else {
+            throw NetworkState.noData
+        }
+        
+        return repos
+    }
+    
 }

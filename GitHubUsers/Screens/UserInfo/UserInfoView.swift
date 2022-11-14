@@ -2,25 +2,38 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    let vm: UserInfoViewModel!
+    @ObservedObject var vm: UserInfoViewModel
     @Environment(\.presentationMode) var presentationMode
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                VStack {
-                    avatarImageView
+        ZStack {
+            
+            VStack {
+                avatarImageView
+                Spacer()
+            }
+            
+            VStack {
+                HStack {
                     Spacer()
+                    closeButton
                 }
+                .padding([.horizontal, .top])
+                
                 ScrollView() {
-                    userInfoView.padding(.top, height / 2.6)
+                    userInfoView
+                        .padding(.top, height / 3.2)
+                        .padding()
                     reposView
+                    
                     Spacer()
                 }
             }
+            
         }
+        .onAppear { vm.getRepos() }
     }
 }
 
@@ -55,7 +68,6 @@ extension UserInfoView {
             .scaledToFill()
             .overlay {
                 VStack {
-                    closeButton
                     Spacer()
                     HStack {
                         Text(vm.user.name ?? "")
@@ -99,44 +111,36 @@ extension UserInfoView {
         )
     }
     
-    private var closeButton: some View {
-        HStack {
-            Spacer()
-            Button(action: {presentationMode.wrappedValue.dismiss()}) {
-                RoundedRectangle(cornerRadius: 5)
-                    .frame(width: 35, height:  35)
-                    .foregroundColor(.black.opacity(0.5))
-                    .overlay {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 20))
-                            .foregroundColor(.white)
+    private var reposView: some View {
+        VStack {
+            if vm.loadRepos == .loaded {
+                Text("Repos \(vm.user.public_repos ?? 0)")
+                    .font(.title2)
+                    .bold()
+                    .offset(y: 20)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(vm.repos, id: \.self) { repo in
+                            RepoRowView(repo: repo).padding()
+                        }
                     }
-                    .padding(.top, height / 10)
-                    .padding(.trailing, 20)
+                }
+            } else {
+                ProgressView()
             }
         }
     }
     
-    private var reposView: some View {
-        VStack {
-            Text("Repos \(vm.user.public_repos ?? 0)")
-                .font(.title2)
-                .bold()
-                .offset(y: 20)
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach((0..<(vm.user.public_repos ?? 0)), id: \.self) { _ in
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(
-                                width: width / 1.4,
-                                height: height / 6
-                            )
-                            .foregroundColor(Color("card"))
-                            .shadow(color: Color("shadow"), radius: 5)
-                            .padding()
-                    }
+    private var closeButton: some View {
+        Button(action: {presentationMode.wrappedValue.dismiss()}) {
+            RoundedRectangle(cornerRadius: 5)
+                .frame(width: 35, height:  35)
+                .foregroundColor(.black.opacity(0.5))
+                .overlay {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
                 }
-            }
         }
     }
     
