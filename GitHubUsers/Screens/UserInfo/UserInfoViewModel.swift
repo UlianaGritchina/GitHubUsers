@@ -44,4 +44,12 @@ class UserInfoViewModel: ObservableObject {
        repos = repos.sorted(by: { $0.stargazers_count! > $1.stargazers_count! })
     }
     
+    func starsCount() -> Int {
+        var count = 0
+        for repo in repos {
+            count += repo.stargazers_count ?? 0
+        }
+        return count
+    }
+    
 }

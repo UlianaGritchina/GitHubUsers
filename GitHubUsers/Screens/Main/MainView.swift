@@ -13,20 +13,12 @@ struct MainView: View {
                     ProgressView()
                 }
                 if vm.networkState == .loaded {
-                    userPreviewCard
+                    UserRowView(user: vm.user, avatarImageData: vm.avatarImageData)
                 }
                 Spacer()
                 findButton.padding(.bottom)
             }
             .navigationTitle("Find User")
-            .fullScreenCover(isPresented: $vm.isShowingUserInfoView, content: {
-                UserInfoView(
-                    vm: UserInfoViewModel(
-                        user: vm.user,
-                        avatarImageData: vm.avatarImageData
-                    )
-                )
-            })
         }
     }
 }
@@ -61,33 +53,6 @@ extension MainView {
                         .font(.headline)
                         .foregroundColor(.white)
                 }
-        }
-    }
-    
-    private var userPreviewCard: some View {
-        Button(action: {vm.showUserInfo()}) {
-            RoundedRectangle(cornerRadius: 10)
-                .frame(width: width - 80, height: width / 3)
-                .foregroundColor(Color("card"))
-                .shadow(color: Color("shadow"), radius: 5)
-                .blur(radius: 0.5)
-                .overlay { userPrewiewContent.padding() }
-        }
-    }
-    
-    private var userPrewiewContent: some View {
-        HStack {
-            vm.avatarImage
-                .resizable()
-                .frame(width:width / 4, height: width / 4)
-                .cornerRadius(10)
-            VStack(alignment: .leading, spacing: 10) {
-                Text(vm.user.name ?? "noname").font(.headline)
-                Text(vm.user.bio ?? "nobio")
-                Text(vm.user.location ?? "nolocation")
-            }
-            .foregroundColor(Color("text"))
-            Spacer()
         }
     }
     

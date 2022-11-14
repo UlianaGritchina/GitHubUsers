@@ -17,6 +17,7 @@
 		0E416CF329210AD7000983CD /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E416CF229210AD7000983CD /* UserInfoViewModel.swift */; };
 		0E416CF529211826000983CD /* RepoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E416CF429211826000983CD /* RepoRowView.swift */; };
 		0E416CF729211B6A000983CD /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E416CF629211B6A000983CD /* Repository.swift */; };
+		0E9BD4FC292212B40029AC2B /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BD4FB292212B40029AC2B /* UserRowView.swift */; };
 		0EB94AF3291E23D100F43FE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB94AF2291E23D100F43FE9 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		0E416CF229210AD7000983CD /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		0E416CF429211826000983CD /* RepoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoRowView.swift; sourceTree = "<group>"; };
 		0E416CF629211B6A000983CD /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		0E9BD4FB292212B40029AC2B /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		0EB94AF2291E23D100F43FE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 				0E29AD26291D2439008476A8 /* More */,
 				0EB94AF1291E23BC00F43FE9 /* Models */,
 				0E29AD27291D244C008476A8 /* Screens */,
+				0E9BD4FE292215A10029AC2B /* Rows */,
 				0E29AD2A291D2474008476A8 /* Managers */,
 			);
 			path = GitHubUsers;
@@ -113,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				0E29AD2F291D24A9008476A8 /* UserInfoView.swift */,
-				0E416CF429211826000983CD /* RepoRowView.swift */,
 				0E416CF229210AD7000983CD /* UserInfoViewModel.swift */,
 			);
 			path = UserInfo;
@@ -125,6 +127,31 @@
 				0E29AD31291D24B0008476A8 /* NewtworkManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		0E9BD4FD292215830029AC2B /* UserRow */ = {
+			isa = PBXGroup;
+			children = (
+				0E9BD4FB292212B40029AC2B /* UserRowView.swift */,
+			);
+			path = UserRow;
+			sourceTree = "<group>";
+		};
+		0E9BD4FE292215A10029AC2B /* Rows */ = {
+			isa = PBXGroup;
+			children = (
+				0E9BD4FD292215830029AC2B /* UserRow */,
+				0E9BD4FF292215D60029AC2B /* RepoRow */,
+			);
+			path = Rows;
+			sourceTree = "<group>";
+		};
+		0E9BD4FF292215D60029AC2B /* RepoRow */ = {
+			isa = PBXGroup;
+			children = (
+				0E416CF429211826000983CD /* RepoRowView.swift */,
+			);
+			path = RepoRow;
 			sourceTree = "<group>";
 		};
 		0EB94AF1291E23BC00F43FE9 /* Models */ = {
@@ -209,6 +236,7 @@
 				0E29AD2D291D24A1008476A8 /* MainView.swift in Sources */,
 				0E29AD19291D241C008476A8 /* GitHubUsersApp.swift in Sources */,
 				0E416CF529211826000983CD /* RepoRowView.swift in Sources */,
+				0E9BD4FC292212B40029AC2B /* UserRowView.swift in Sources */,
 				0E416CF329210AD7000983CD /* UserInfoViewModel.swift in Sources */,
 				0EB94AF3291E23D100F43FE9 /* User.swift in Sources */,
 				0E416CF729211B6A000983CD /* Repository.swift in Sources */,

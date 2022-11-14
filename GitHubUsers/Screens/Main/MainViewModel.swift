@@ -28,12 +28,11 @@ class MainViewModel: ObservableObject {
     
     func findUser() {
         networkState = .loading
-        Task {
-            do {
-                self.user = try await NetworkManager.shared.fetchUserBy(userName: username)
+        NetworkManager.shared.fetchUserBy(userName: username) { user, networkState in
+            guard let user = user else { return }
+            DispatchQueue.main.async {
+                self.user = user
                 self.fetchUserAvatar()
-            } catch {
-                print(error)
             }
         }
     }
@@ -41,9 +40,11 @@ class MainViewModel: ObservableObject {
     private func fetchUserAvatar() {
         NetworkManager.shared.fetchUserAvatar(stringUrl: user.avatar_url ?? "") { image, error in
             if let image = image {
-                self.avatarImage = Image(uiImage: image)
-                self.avatarImageData = image.pngData() ?? Data()
-                self.networkState = .loaded
+                DispatchQueue.main.async {
+                    self.avatarImage = Image(uiImage: image)
+                    self.avatarImageData = image.pngData() ?? Data()
+                    self.networkState = .loaded
+                }
             }
         }
     }

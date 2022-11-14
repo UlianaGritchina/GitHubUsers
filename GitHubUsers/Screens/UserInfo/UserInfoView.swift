@@ -45,7 +45,7 @@ struct UserInfoView_Previews: PreviewProvider {
                     login: "login",
                     avatar_url: "",
                     html_url: "",
-                    repos_url: "",
+                    repos_url: "https://api.github.com/users/UlianaGritchina/repos",
                     name: "name",
                     location: "location",
                     bio: "bio",
@@ -114,10 +114,19 @@ extension UserInfoView {
     private var reposView: some View {
         VStack {
             if vm.loadRepos == .loaded {
-                Text("Repos \(vm.user.public_repos ?? 0)")
-                    .font(.title2)
-                    .bold()
-                    .offset(y: 20)
+                HStack {
+                    Text("Repos \(vm.user.public_repos ?? 0)")
+                        .font(.title2)
+                        .bold()
+                    HStack(spacing: 3) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        .font(.headline)
+                        Text("\(vm.starsCount())")
+                    }
+                    .font(.headline)
+                }
+                .offset(y: 20)
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(vm.repos, id: \.self) { repo in
