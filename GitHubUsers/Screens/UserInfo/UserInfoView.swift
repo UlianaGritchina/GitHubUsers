@@ -122,7 +122,7 @@ extension UserInfoView {
                         Image(systemName: "star.fill")
                             .foregroundColor(.yellow)
                         .font(.headline)
-                        Text("\(vm.starsCount())")
+                        Text("\(vm.starsCount)")
                     }
                     .font(.headline)
                 }

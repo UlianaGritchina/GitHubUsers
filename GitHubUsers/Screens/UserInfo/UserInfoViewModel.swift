@@ -22,6 +22,8 @@ class UserInfoViewModel: ObservableObject {
     
     @Published var repos: [Repository] = []
     @Published var loadRepos: NetworkState = .none
+    @Published var starsCount = 0
+    
     init(user: User, avatarImageData: Data) {
         self.user = user
         self.userAvatarImageData = avatarImageData
@@ -29,22 +31,22 @@ class UserInfoViewModel: ObservableObject {
     
     func getRepos() {
         loadRepos = .loading
-        Task {
-            do {
-                self.repos = try await NetworkManager.shared.fetchRepos(stringUrl: user.repos_url ?? "")
+        NetworkManager.shared.fetchRepos(stringUrl: user.repos_url ?? "") { repos in
+            guard let repos = repos else { return }
+            DispatchQueue.main.async {
+                self.repos = repos
                 self.sortReposByStars()
-                loadRepos = .loaded
-            } catch {
-                loadRepos = .error
+                self.starsCount = self.getStarsCount()
+                self.loadRepos = .loaded
             }
         }
     }
     
-    func sortReposByStars() {
-       repos = repos.sorted(by: { $0.stargazers_count! > $1.stargazers_count! })
+    private func sortReposByStars() {
+        repos = repos.sorted(by: { $0.stargazers_count! > $1.stargazers_count! })
     }
     
-    func starsCount() -> Int {
+    private func getStarsCount() -> Int {
         var count = 0
         for repo in repos {
             count += repo.stargazers_count ?? 0

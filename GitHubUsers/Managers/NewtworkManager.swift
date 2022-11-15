@@ -25,7 +25,7 @@ class NetworkManager {
                 let data = data,
                 let response = response as? HTTPURLResponse,
                 response.statusCode >= 200 && response.statusCode < 300 else {
-                completion(nil, .noData)
+                completion(nil, .error)
                 return
             }
             guard let user = try? JSONDecoder().decode(User.self, from: data) else {
@@ -35,9 +35,7 @@ class NetworkManager {
             completion(user, .loaded)
         }
         .resume()
-        
     }
-    
     
     func fetchUserAvatar(stringUrl: String, completion:  @escaping(_ image: UIImage?, _ error: Error?) -> () ) {
         guard let url = URL(string: stringUrl) else { return }
@@ -55,18 +53,27 @@ class NetworkManager {
         .resume()
     }
     
-    func fetchRepos(stringUrl: String) async throws -> [Repository] {
+    func fetchRepos(stringUrl: String, completion:  @escaping(_ repos: [Repository]?) -> ()) {
         guard let url = URL(string: stringUrl) else {
-            throw NetworkState.badURL
+            completion(nil)
+            return
         }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        
-        guard let repos = try? JSONDecoder().decode([Repository].self, from: data) else {
-            throw NetworkState.noData
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode >= 200 && response.statusCode < 300 else {
+                completion(nil)
+                return
+            }
+            guard let repos = try? JSONDecoder().decode([Repository].self, from: data) else {
+                completion(nil)
+                return
+            }
+            completion(repos)
         }
-        
-        return repos
+        .resume()
+  
     }
     
 }
