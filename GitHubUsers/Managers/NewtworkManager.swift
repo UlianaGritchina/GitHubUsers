@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 enum NetworkState: Error {
     case badURL
@@ -14,6 +15,13 @@ class NetworkManager {
     static let shared  = NetworkManager()
     private init () { }
     private let baseUsersUrl = "https://api.github.com/users/"
+    
+    func downloadUserAvatarImageData(url: URL) -> AnyPublisher<Data?, Error> {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map(handleResponse)
+            .mapError({ $0 })
+            .eraseToAnyPublisher()
+    }
     
     func fetchUserBy(userName: String, completion:  @escaping(_ user: User?, _ networkState: NetworkState) -> ()) {
         guard let url = URL(string: baseUsersUrl + userName) else {
@@ -33,22 +41,6 @@ class NetworkManager {
                 return
             }
             completion(user, .loaded)
-        }
-        .resume()
-    }
-    
-    func fetchUserAvatar(stringUrl: String, completion:  @escaping(_ image: UIImage?, _ error: Error?) -> () ) {
-        guard let url = URL(string: stringUrl) else { return }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let data = data,
-                let image = UIImage(data: data),
-                let response = response as? HTTPURLResponse,
-                response.statusCode >= 200 && response.statusCode < 300 else {
-                completion(nil, error)
-                return
-            }
-            completion(image, nil )
         }
         .resume()
     }
@@ -73,7 +65,37 @@ class NetworkManager {
             completion(repos)
         }
         .resume()
-  
+    }
+
+    func handleResponse(data: Data?, response: URLResponse?) -> Data? {
+        guard
+            let data = data,
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+                return nil
+            }
+        return data
     }
     
+    
+    
+    /*
+     
+    func fetchUserAvatar(stringUrl: String, completion:  @escaping(_ image: UIImage?, _ error: Error?) -> () ) {
+        guard let url = URL(string: stringUrl) else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let data = data,
+                let image = UIImage(data: data),
+                let response = response as? HTTPURLResponse,
+                response.statusCode >= 200 && response.statusCode < 300 else {
+                completion(nil, error)
+                return
+            }
+            completion(image, nil )
+        }
+        .resume()
+    }
+     
+    */ // DOWNLOADING IMAGE WITH ESCAPING
 }
