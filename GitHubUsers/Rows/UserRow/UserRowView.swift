@@ -34,7 +34,8 @@ struct UserRow_Previews: PreviewProvider {
                 public_repos: 4,
                 followers: 6,
                 following: 3,
-                created_at: ""),
+                created_at: ""
+            ),
             avatarImageData: Data()
         )
     }
@@ -46,7 +47,7 @@ extension UserRowView {
     private var userPreviewCard: some View {
         Button(action: {isShowingUserInfoView.toggle() }) {
             RoundedRectangle(cornerRadius: 10)
-                .frame(width: width - 80, height: width / 3)
+                .frame(width: width - 40, height: width / 3)
                 .foregroundColor(Color("card"))
                 .shadow(color: Color("shadow"), radius: 5)
                 .blur(radius: 0.5)
@@ -61,9 +62,11 @@ extension UserRowView {
                 .frame(width: width / 4, height: width / 4)
                 .cornerRadius(10)
             VStack(alignment: .leading, spacing: 10) {
-                Text(user.name ?? "noname").font(.headline)
-                Text(user.bio ?? "nobio")
-                Text(user.location ?? "nolocation")
+                Text(user.name ?? user.login ?? "")
+                    .font(.system(size: height / 40))
+                    .bold()
+                Text(user.bio ?? "")
+                Text(user.location ?? "")
             }
             .foregroundColor(Color("text"))
             Spacer()

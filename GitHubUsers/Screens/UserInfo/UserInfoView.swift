@@ -25,7 +25,6 @@ struct UserInfoView: View {
                 ScrollView() {
                     userInfoView
                         .padding(.top, height / 3.2)
-                        .padding()
                     reposView
                     
                     Spacer()
@@ -70,7 +69,7 @@ extension UserInfoView {
                 VStack {
                     Spacer()
                     HStack {
-                        Text(vm.user.name ?? "")
+                        Text(vm.user.name ?? vm.user.login ?? "")
                             .bold()
                             .font(.largeTitle)
                             .foregroundColor(.white)
@@ -115,9 +114,10 @@ extension UserInfoView {
         VStack {
             if vm.loadRepos == .loaded {
                 HStack {
-                    Text("Repos \(vm.user.public_repos ?? 0)")
+                    Text("Public repos \(vm.repos.count)")
                         .font(.title2)
                         .bold()
+                    Spacer()
                     HStack(spacing: 3) {
                         Image(systemName: "star.fill")
                             .foregroundColor(.yellow)
@@ -126,6 +126,7 @@ extension UserInfoView {
                     }
                     .font(.headline)
                 }
+                .padding(.horizontal)
                 .offset(y: 20)
                 ScrollView(.horizontal) {
                     HStack {

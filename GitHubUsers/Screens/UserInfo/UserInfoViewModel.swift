@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 class UserInfoViewModel: ObservableObject {
@@ -55,3 +54,4 @@ class UserInfoViewModel: ObservableObject {
     }
     
 }
+
