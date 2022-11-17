@@ -11,9 +11,8 @@ struct FindUserView: View {
                 if vm.networkState == .loading {
                     ProgressView()
                 }
-                if vm.networkState == .loaded {
-                    UserRowView(user: vm.user, avatarImageData: vm.avatarImageData)
-                }
+                UserRowView(user: vm.user)
+                    .opacity(vm.networkState == .loaded ? 1 : 0)
                 Spacer()
                 findButton.padding(.bottom)
             }

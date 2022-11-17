@@ -14,11 +14,25 @@ class NetworkManager {
     
     static let shared  = NetworkManager()
     private init () { }
-    private let baseUsersUrl = "https://api.github.com/users/"
+    let baseUsersUrl = "https://api.github.com/users/"
     
     func downloadUserAvatarImageData(url: URL) -> AnyPublisher<Data?, Error> {
         URLSession.shared.dataTaskPublisher(for: url)
             .map(handleResponse)
+            .mapError({ $0 })
+            .eraseToAnyPublisher()
+    }
+    
+    func downloadUsersCombine(url: URL) -> AnyPublisher<[User]?, Error> {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map(checkUsersResponse)
+            .mapError({ $0 })
+            .eraseToAnyPublisher()
+    }
+    
+    func downloadUserInfo(url: URL) -> AnyPublisher<User?, Error> {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map(checkUserResponse)
             .mapError({ $0 })
             .eraseToAnyPublisher()
     }
@@ -75,6 +89,36 @@ class NetworkManager {
                 return nil
             }
         return data
+    }
+    
+    func checkUsersResponse(data: Data?, response: URLResponse?) -> [User] {
+        guard
+            let data = data,
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+            print("data or code")
+                return []
+            }
+        guard  let users = try? JSONDecoder().decode([User].self, from: data) else {
+            print("no decode")
+            return []
+        }
+        return users
+    }
+    
+    func checkUserResponse(data: Data?, response: URLResponse?) -> User? {
+        guard
+            let data = data,
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+            print("data or code")
+                return nil
+            }
+        guard  let user = try? JSONDecoder().decode(User.self, from: data) else {
+            print("no decode")
+            return nil
+        }
+        return user
     }
     
     

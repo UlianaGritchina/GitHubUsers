@@ -13,5 +13,6 @@ struct User: Hashable, Decodable {
     let followers: Int?
     let following: Int?
     let created_at: String?
+    var avatarImageData: Data?
 }
 
