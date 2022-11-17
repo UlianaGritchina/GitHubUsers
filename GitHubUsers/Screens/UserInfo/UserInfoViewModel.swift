@@ -13,19 +13,18 @@ class UserInfoViewModel: ObservableObject {
         public_repos: 0,
         followers: 0,
         following: 0,
-        created_at: ""
+        created_at: "",
+        avatarImageData: Data()
     )
     
-    var userAvatarImageData = Data()
     let defoultImage: UIImage = UIImage(named: "Octocat")!
     
     @Published var repos: [Repository] = []
     @Published var loadRepos: NetworkState = .none
     @Published var starsCount = 0
     
-    init(user: User, avatarImageData: Data) {
+    init(user: User) {
         self.user = user
-        self.userAvatarImageData = avatarImageData
     }
     
     func getRepos() {

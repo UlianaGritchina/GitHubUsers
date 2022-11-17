@@ -51,9 +51,9 @@ struct UserInfoView_Previews: PreviewProvider {
                     public_repos: 5,
                     followers: 5,
                     following: 5,
-                    created_at: ""
-                ),
-                avatarImageData: Data()
+                    created_at: "",
+                    avatarImageData: Data()
+                )
             )
         )
     }
@@ -62,7 +62,7 @@ struct UserInfoView_Previews: PreviewProvider {
 extension UserInfoView {
     
     private var avatarImageView: some View {
-        Image(uiImage: UIImage(data: vm.userAvatarImageData) ?? vm.defoultImage)
+        Image(uiImage: UIImage(data: vm.user.avatarImageData ?? Data()) ?? vm.defoultImage)
             .resizable()
             .scaledToFill()
             .overlay {
