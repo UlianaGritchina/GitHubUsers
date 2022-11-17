@@ -2,20 +2,13 @@ import SwiftUI
 
 struct UserRowView: View {
     let user: User
-    let avatarImageData: Data
     @State private var isShowingUserInfoView = false
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
     var body: some View {
         userPreviewCard
             .sheet(isPresented: $isShowingUserInfoView, content: {
-                UserInfoView(
-                    vm: UserInfoViewModel(
-                        user: user,
-                        avatarImageData: avatarImageData
-                    )
-                )
-                
+                UserInfoView(vm: UserInfoViewModel(user: user ))
             })
     }
 }
@@ -34,9 +27,9 @@ struct UserRow_Previews: PreviewProvider {
                 public_repos: 4,
                 followers: 6,
                 following: 3,
-                created_at: ""
-            ),
-            avatarImageData: Data()
+                created_at: "",
+                avatarImageData: Data()
+            )
         )
     }
 }
@@ -57,12 +50,12 @@ extension UserRowView {
     
     private var userPrewiewContent: some View {
         HStack {
-            Image(uiImage: UIImage(data: avatarImageData) ?? UIImage(named: "Octocat")!)
+            Image(uiImage: UIImage(data: user.avatarImageData ?? Data()) ?? UIImage(named: "Octocat")!)
                 .resizable()
                 .frame(width: width / 4, height: width / 4)
                 .cornerRadius(10)
             VStack(alignment: .leading, spacing: 10) {
-                Text(user.name ?? user.login ?? "")
+                Text(user.login ?? "")
                     .font(.system(size: height / 40))
                     .bold()
                 Text(user.bio ?? "")
