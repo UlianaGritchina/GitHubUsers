@@ -32,11 +32,11 @@ struct MainView_Previews: PreviewProvider {
 extension FindUserView {
     
     private var usernameTF: some View {
-        RoundedRectangle(cornerRadius: 5)
-            .frame(width: width - 40, height: height / 20)
+        RoundedRectangle(cornerRadius: 10)
+            .frame(width: width - 40, height: 40)
             .foregroundColor(.gray.opacity(0.15))
             .overlay {
-                TextField("Username", text: $vm.username)
+                TextField("🔍Username", text: $vm.username)
                     .font(.headline)
                     .padding()
             }
