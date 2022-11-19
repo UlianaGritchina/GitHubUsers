@@ -8,7 +8,7 @@ struct RepoInfoView: View {
     var body: some View {
         VStack {
             Spacer()
-            sheet.overlay { infoView  .padding() }
+            sheet.overlay { infoView.padding() }
         }
         .ignoresSafeArea()
         .offset(y: isShowingRepoInfo ? 0 : height)
@@ -25,7 +25,7 @@ struct RepoInfoView_Previews: PreviewProvider {
         RepoInfoView(
             repo: Repository(
                 name: "name",
-                description: "dfaldjlfjdljdfaldjlfjdljfljsadlgjkjlgjkjsdalgjklfljsadlgjkjlgjkjsdalgjkl",
+                description: "dfaldjlfjdljdfljsadlgjkjlgl",
                 html_url: "",
                 stargazers_count: 4,
                 language: "swift",
