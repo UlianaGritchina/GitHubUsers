@@ -21,6 +21,7 @@
 		0EA5742F292363B900A288AC /* FindUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA5742E292363B900A288AC /* FindUserViewModel.swift */; };
 		0EB94AF3291E23D100F43FE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB94AF2291E23D100F43FE9 /* User.swift */; };
 		0EBB9508292364E2001783EF /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB9507292364E2001783EF /* UsersView.swift */; };
+		0EC23C1C2927686C00FF9A3A /* RepoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC23C1B2927686C00FF9A3A /* RepoInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		0EA5742E292363B900A288AC /* FindUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserViewModel.swift; sourceTree = "<group>"; };
 		0EB94AF2291E23D100F43FE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0EBB9507292364E2001783EF /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		0EC23C1B2927686C00FF9A3A /* RepoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				0EBB9506292364D1001783EF /* Users */,
 				0EA5742A2923637C00A288AC /* FindUser */,
 				0E29AD29291D2464008476A8 /* UserInfo */,
+				0EC23C1D29276D5100FF9A3A /* RepoInfo */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -175,6 +178,14 @@
 				0E4FA0142924E60100CC3F4D /* UsersViewModel.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		0EC23C1D29276D5100FF9A3A /* RepoInfo */ = {
+			isa = PBXGroup;
+			children = (
+				0EC23C1B2927686C00FF9A3A /* RepoInfoView.swift */,
+			);
+			path = RepoInfo;
 			sourceTree = "<group>";
 		};
 		0ED4E5082924F11500B52D67 /* Views */ = {
@@ -255,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC23C1C2927686C00FF9A3A /* RepoInfoView.swift in Sources */,
 				0EA5742C2923638E00A288AC /* FindUserView.swift in Sources */,
 				0E4FA0152924E60100CC3F4D /* UsersViewModel.swift in Sources */,
 				0EA5742F292363B900A288AC /* FindUserViewModel.swift in Sources */,

@@ -15,7 +15,7 @@ struct RepoRowView: View {
 
 struct RepoRowView_Previews: PreviewProvider {
     static var previews: some View {
-        RepoRowView(repo: Repository(name: "name", html_url: "", stargazers_count: 3, language: "Swift", visibility: "Private"))
+        RepoRowView(repo: Repository(name: "name", description: "description", html_url: "", stargazers_count: 3, language: "Swift", visibility: "Private"))
     }
 }
 

@@ -4,6 +4,7 @@ import Combine
 class UsersViewModel: ObservableObject {
     
     @Published var users: [User] = []
+    private let networkManager = NetworkManager.shared
     var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -12,7 +13,7 @@ class UsersViewModel: ObservableObject {
     
     func getUsers() {
         guard let url = URL(string: "https://api.github.com/users") else { return }
-        NetworkManager.shared.downloadUsersCombine(url: url)
+        NetworkManager.shared.downloadUsersBy(url)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -28,18 +29,22 @@ class UsersViewModel: ObservableObject {
     
     func getUserInfo(users: [User]) {
         for user in users {
-            NetworkManager.shared.fetchUserBy(userName: user.login ?? "") { user, networkState in
-                guard let user = user else { return }
-                DispatchQueue.main.async {
-                    self.setUserAvatarImageData(user)
+            guard let url = URL(string: networkManager.baseUsersUrl + (user.login ?? "")) else { return }
+            networkManager.downloadUserInfo(url: url)
+                .receive(on: DispatchQueue.main)
+                .sink { _ in
+                    
+                } receiveValue: { [weak self] user in
+                    guard let user = user else { return }
+                    self?.setUserAvatarImageData(user)
                 }
-            }
+                .store(in: &self.cancellables)
         }
     }
     
     func setUserAvatarImageData(_ user: User) {
         guard let avatarUrl = URL(string: user.avatar_url ?? "") else { return }
-        NetworkManager.shared.downloadUserAvatarImageData(url: avatarUrl)
+        networkManager.downloadUserAvatarImageData(url: avatarUrl)
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
@@ -50,15 +55,6 @@ class UsersViewModel: ObservableObject {
                 self?.users.append(newUser)
             }
             .store(in: &self.cancellables)
-    }
-    
-    func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
-        guard
-            let response = output.response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
-            throw URLError(.badServerResponse)
-        }
-        return output.data
     }
     
 }

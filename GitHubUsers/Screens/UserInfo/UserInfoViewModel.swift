@@ -17,11 +17,22 @@ class UserInfoViewModel: ObservableObject {
         avatarImageData: Data()
     )
     
-    let defoultImage: UIImage = UIImage(named: "Octocat")!
+    @Published var  selectedRepo =  Repository(
+        name: "name",
+        description: "des",
+        html_url: "",
+        stargazers_count: 4,
+        language: "swift",
+        visibility: "public"
+    )
+    
     
     @Published var repos: [Repository] = []
     @Published var loadRepos: NetworkState = .none
     @Published var starsCount = 0
+    @Published var isShowingRepoInfo = false
+    
+    let defoultImage: UIImage = UIImage(named: "Octocat")!
     
     init(user: User) {
         self.user = user
@@ -50,6 +61,13 @@ class UserInfoViewModel: ObservableObject {
             count += repo.stargazers_count ?? 0
         }
         return count
+    }
+    
+    func showRepoInfo(_ repo: Repository) {
+        selectedRepo = repo
+        withAnimation(.spring()) {
+            isShowingRepoInfo.toggle()
+        }
     }
     
 }

@@ -6,15 +6,12 @@ struct UserInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
-    
     var body: some View {
         ZStack {
-            
             VStack {
                 avatarImageView
                 Spacer()
             }
-            
             VStack {
                 HStack {
                     Spacer()
@@ -30,6 +27,8 @@ struct UserInfoView: View {
                     Spacer()
                 }
             }
+            
+            RepoInfoView(repo: vm.selectedRepo, isShowingRepoInfo: $vm.isShowingRepoInfo)
             
         }
         .onAppear { vm.getRepos() }
@@ -121,22 +120,27 @@ extension UserInfoView {
                     HStack(spacing: 3) {
                         Image(systemName: "star.fill")
                             .foregroundColor(.yellow)
-                        .font(.headline)
+                            .font(.headline)
                         Text("\(vm.starsCount)")
                     }
                     .font(.headline)
                 }
                 .padding(.horizontal)
                 .offset(y: 20)
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(vm.repos, id: \.self) { repo in
-                            RepoRowView(repo: repo).padding()
-                        }
-                    }
-                }
+                reposScroll
             } else {
                 ProgressView()
+            }
+        }
+    }
+    
+    private var reposScroll: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(vm.repos, id: \.self) { repo in
+                    RepoRowView(repo: repo).padding()
+                        .onTapGesture { vm.showRepoInfo(repo) }
+                }
             }
         }
     }
