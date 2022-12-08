@@ -27,7 +27,7 @@ class UserInfoViewModel: ObservableObject {
     
     func getRepos() {
         loadRepos = .loading
-        NetworkManager.shared.fetchRepos(stringUrl: user.repos_url ?? "") { repos in
+        GitHubApiManager.shared.fetchRepos(stringUrl: user.repos_url ?? "") { repos in
             guard let repos = repos else { return }
             DispatchQueue.main.async {
                 self.repos = repos

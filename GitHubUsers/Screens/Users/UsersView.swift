@@ -5,11 +5,14 @@ struct UsersView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if vm.users.isEmpty {
+                if vm.networkState == .loading {
                     ProgressView()
-                } else {
-                    UsersListView(users: vm.users)
                 }
+                if vm.networkState == .error {
+                    Text("Error. Try it later.")
+                }
+                UsersListView(users: vm.users)
+                    .opacity(vm.networkState == .loaded ? 1 : 0)
             }
             .navigationTitle("Users")
         }

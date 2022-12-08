@@ -10,7 +10,7 @@ class FindUserViewModel: ObservableObject {
     @Published var isShowingUserInfoView = false
     @Published var networkState: NetworkState = .none
     var cancellables = Set<AnyCancellable>()
-    private let networkManager = NetworkManager.shared
+    private let networkManager = GitHubApiManager.shared
     
     func showUserInfo() {
         isShowingUserInfoView.toggle()

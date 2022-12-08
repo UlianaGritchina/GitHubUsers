@@ -10,9 +10,9 @@ enum NetworkState: Error {
     case none
 }
 
-class NetworkManager {
+class GitHubApiManager {
     
-    static let shared  = NetworkManager()
+    static let shared  = GitHubApiManager()
     private init () { }
     let baseUsersUrl = "https://api.github.com/users/"
     

@@ -11,6 +11,10 @@ struct FindUserView: View {
                 if vm.networkState == .loading {
                     ProgressView()
                 }
+                if vm.networkState == .error {
+                    Text("Error. Try it later.")
+                        .font(.headline)
+                }
                 UserRowView(user: vm.user)
                     .opacity(vm.networkState == .loaded ? 1 : 0)
                 Spacer()
