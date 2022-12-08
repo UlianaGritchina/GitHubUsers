@@ -14,22 +14,19 @@ struct UserInfoView: View {
             }
             VStack {
                 HStack {
+                    PineButton(action: {})
                     Spacer()
-                    closeButton
+                    CloseButton(action: {presentationMode.wrappedValue.dismiss()})
                 }
                 .padding([.horizontal, .top])
                 
                 ScrollView() {
-                    userInfoView
-                        .padding(.top, height / 3.2)
+                    UserBaseInfoCardView(user: vm.user).padding(.top, height / 3.2)
                     reposView
-                    
                     Spacer()
                 }
             }
-            
             RepoInfoView(repo: vm.selectedRepo, isShowingRepoInfo: $vm.isShowingRepoInfo)
-            
         }
         .onAppear { vm.getRepos() }
     }
@@ -38,22 +35,7 @@ struct UserInfoView: View {
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         UserInfoView(
-            vm: UserInfoViewModel(
-                user: User(
-                    login: "login",
-                    avatar_url: "",
-                    html_url: "",
-                    repos_url: "https://api.github.com/users/UlianaGritchina/repos",
-                    name: "name",
-                    location: "location",
-                    bio: "bio",
-                    public_repos: 5,
-                    followers: 5,
-                    following: 5,
-                    created_at: "",
-                    avatarImageData: Data()
-                )
-            )
+            vm: UserInfoViewModel(user: FakeDataManager.instance.getUser())
         )
     }
 }
@@ -79,34 +61,6 @@ extension UserInfoView {
                 }
             }
             .frame(width: width, height: height / 4)
-    }
-    
-    private var userInfoView: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                if let bio = vm.user.bio {
-                    Text(bio).bold()
-                }
-                if let location = vm.user.location {
-                    Text(location)
-                }
-                if let followers = vm.user.followers {
-                    Text("Followers: \(followers)")
-                }
-                if let following = vm.user.following {
-                    Text("Following: \(following)")
-                }
-            }
-            .font(.system(size: height / 40))
-            Spacer()
-        }
-        .padding()
-        .frame(width: width - 20)
-        .background(
-            Color("card")
-                .cornerRadius(10)
-                .shadow(color: Color("shadow"), radius: 5)
-        )
     }
     
     private var reposView: some View {
@@ -142,19 +96,6 @@ extension UserInfoView {
                         .onTapGesture { vm.showRepoInfo(repo) }
                 }
             }
-        }
-    }
-    
-    private var closeButton: some View {
-        Button(action: {presentationMode.wrappedValue.dismiss()}) {
-            RoundedRectangle(cornerRadius: 5)
-                .frame(width: 35, height:  35)
-                .foregroundColor(.black.opacity(0.5))
-                .overlay {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                }
         }
     }
     

@@ -15,22 +15,7 @@ struct UserRowView: View {
 
 struct UserRow_Previews: PreviewProvider {
     static var previews: some View {
-        UserRowView(
-            user: User(
-                login: "",
-                avatar_url: "",
-                html_url: "",
-                repos_url: "",
-                name: "name",
-                location: "loc",
-                bio: "bio",
-                public_repos: 4,
-                followers: 6,
-                following: 3,
-                created_at: "",
-                avatarImageData: Data()
-            )
-        )
+        UserRowView(user: FakeDataManager.instance.getUser())
     }
 }
 

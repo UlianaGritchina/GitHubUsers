@@ -3,20 +3,7 @@ import Combine
 
 class FindUserViewModel: ObservableObject {
     
-    @Published var user: User = User(
-        login: "",
-        avatar_url: "",
-        html_url: "",
-        repos_url: "",
-        name: "NAME",
-        location: "location",
-        bio: "bio",
-        public_repos: 0,
-        followers: 0,
-        following: 0,
-        created_at: "",
-        avatarImageData: Data()
-    )
+    @Published var user: User = FakeDataManager.instance.getUser()
     @Published var username = ""
     @Published var avatarImage: Image = Image(systemName: "person")
     @Published var avatarImageData: Data = Data()

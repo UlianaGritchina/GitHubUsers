@@ -8,7 +8,7 @@ struct UsersView: View {
                 if vm.users.isEmpty {
                     ProgressView()
                 } else {
-                    usersList
+                    UsersListView(users: vm.users)
                 }
             }
             .navigationTitle("Users")
@@ -22,14 +22,3 @@ struct UsersView_Previews: PreviewProvider {
     }
 }
 
-extension UsersView {
-    private var usersList: some View {
-        ScrollView {
-            ForEach(vm.users, id: \.self) { user in
-                UserRowView(user: user).padding(.bottom)
-            }
-            .padding()
-            .animation(.default, value: vm.users)
-        }
-    }
-}

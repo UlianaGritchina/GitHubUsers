@@ -2,20 +2,7 @@ import SwiftUI
 
 class UserInfoViewModel: ObservableObject {
     
-    var user: User = User(
-        login: "",
-        avatar_url: "",
-        html_url: "",
-        repos_url: "",
-        name: "",
-        location: "",
-        bio: "",
-        public_repos: 0,
-        followers: 0,
-        following: 0,
-        created_at: "",
-        avatarImageData: Data()
-    )
+    var user: User = FakeDataManager.instance.getUser()
     
     @Published var  selectedRepo =  Repository(
         name: "name",
