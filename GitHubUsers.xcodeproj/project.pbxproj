@@ -237,12 +237,20 @@
 		0EF767EA29426B6500A20E7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0EF767ED29426E5700A20E7B /* PineButton.swift */,
-				0EF767EF29426EAA00A20E7B /* CloseButton.swift */,
+				0EF767F52942715500A20E7B /* Buttons */,
 				0EF767E829426A8700A20E7B /* UsersListView.swift */,
 			);
 			name = Views;
 			path = Models/Views;
+			sourceTree = "<group>";
+		};
+		0EF767F52942715500A20E7B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				0EF767ED29426E5700A20E7B /* PineButton.swift */,
+				0EF767EF29426EAA00A20E7B /* CloseButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
