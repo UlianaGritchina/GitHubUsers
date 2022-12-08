@@ -12,6 +12,11 @@ struct StarterView: View {
                 .tabItem {
                     Label("Find user", systemImage: "magnifyingglass")
                 }
+            
+            PinedUsersView()
+                .tabItem {
+                    Label("Pined users", systemImage: "pin")
+                }
         }
     }
 }
