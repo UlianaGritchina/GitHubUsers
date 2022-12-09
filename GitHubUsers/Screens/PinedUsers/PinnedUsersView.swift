@@ -7,7 +7,7 @@ struct PinnedUsersView: View {
             VStack {
                 UsersListView(users: vm.users)
             }
-            .navigationTitle("Pined users")
+            .navigationTitle("Pinned users")
         }
         .onAppear {
             vm.getUsers()

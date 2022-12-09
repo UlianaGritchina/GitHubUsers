@@ -22,8 +22,12 @@ struct UserInfoView: View {
                 
                 ScrollView() {
                     UserBaseInfoCardView(user: vm.user).padding(.top, height / 3.2)
-                    reposView
-                    Spacer()
+                    
+                    if vm.loadRepos == .loading {
+                        ProgressView()
+                    } else {
+                        ReposView(repos: vm.repos, stars: vm.starsCount)
+                    }
                 }
             }
             RepoInfoView(repo: vm.selectedRepo, isShowingRepoInfo: $vm.isShowingRepoInfo)
@@ -40,10 +44,13 @@ struct UserInfoView_Previews: PreviewProvider {
     }
 }
 
+
+//MARK: - VIEW COMPONENTS
+
 extension UserInfoView {
     
     private var avatarImageView: some View {
-        Image(uiImage: UIImage(data: vm.user.avatarImageData ?? Data()) ?? vm.defoultImage)
+        Image(uiImage: UIImage(data: vm.user.avatarImageData ?? Data()) ?? vm.defaultImage)
             .resizable()
             .scaledToFill()
             .overlay {
@@ -63,40 +70,5 @@ extension UserInfoView {
             .frame(width: width, height: height / 4)
     }
     
-    private var reposView: some View {
-        VStack {
-            if vm.loadRepos == .loaded {
-                HStack {
-                    Text("Public repos \(vm.repos.count)")
-                        .font(.title2)
-                        .bold()
-                    Spacer()
-                    HStack(spacing: 3) {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .font(.headline)
-                        Text("\(vm.starsCount)")
-                    }
-                    .font(.headline)
-                }
-                .padding(.horizontal)
-                .offset(y: 20)
-                reposScroll
-            } else {
-                ProgressView()
-            }
-        }
-    }
-    
-    private var reposScroll: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(vm.repos, id: \.self) { repo in
-                    RepoRowView(repo: repo).padding()
-                        .onTapGesture { vm.showRepoInfo(repo) }
-                }
-            }
-        }
-    }
-    
 }
+

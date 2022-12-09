@@ -17,6 +17,11 @@ struct UserBaseInfoCardView: View {
                 if let following = user.following {
                     Text("Following: \(following)")
                 }
+                if let date = user.created_at {
+                    Text("Joined GitHub \(date)")
+                        .font(.subheadline)
+                        .padding(.top, 1)
+                }
             }
             .font(.system(size: UIScreen.main.bounds.height / 40))
             Spacer()
@@ -29,6 +34,7 @@ struct UserBaseInfoCardView: View {
                 .shadow(color: Color("shadow"), radius: 5)
         )
     }
+    
 }
 
 struct UserBaseInfoCardView_Previews: PreviewProvider {

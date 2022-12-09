@@ -1,14 +1,15 @@
-import SwiftUI
 import Combine
+import SwiftUI
 
 class FindUserViewModel: ObservableObject {
     
     @Published var user: User = FakeDataManager.instance.getUser()
-    @Published var username = ""
     @Published var avatarImage: Image = Image(systemName: "person")
+    @Published var networkState: NetworkState = .none
     @Published var avatarImageData: Data = Data()
     @Published var isShowingUserInfoView = false
-    @Published var networkState: NetworkState = .none
+    @Published var username = ""
+    
     var cancellables = Set<AnyCancellable>()
     private let networkManager = GitHubApiManager.shared
     

@@ -23,7 +23,7 @@ struct UserRow_Previews: PreviewProvider {
 extension UserRowView {
     
     private var userPreviewCard: some View {
-        Button(action: {isShowingUserInfoView.toggle() }) {
+        Button(action: { isShowingUserInfoView.toggle() }) {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: width - 40, height: width / 3)
                 .foregroundColor(Color("card"))

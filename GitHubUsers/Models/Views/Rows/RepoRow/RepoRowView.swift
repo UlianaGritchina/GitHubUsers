@@ -15,7 +15,7 @@ struct RepoRowView: View {
 
 struct RepoRowView_Previews: PreviewProvider {
     static var previews: some View {
-        RepoRowView(repo: Repository(name: "name", description: "description", html_url: "", stargazers_count: 3, language: "Swift", visibility: "Private"))
+        RepoRowView(repo: FakeDataManager.instance.getRepo())
     }
 }
 
@@ -27,13 +27,7 @@ extension RepoRowView {
                 Text(repo.name ?? "")
                     .font(.title2)
                     .bold()
-                
-                HStack {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                    Text("\(repo.stargazers_count ?? 0)")
-                }
-                .font(.headline)
+                StarsView(stars: repo.stargazers_count ?? 0)
                 Text(repo.language ?? "").font(.headline)
                 Spacer()
             }

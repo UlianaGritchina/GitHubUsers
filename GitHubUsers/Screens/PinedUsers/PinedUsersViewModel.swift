@@ -1,6 +1,7 @@
 import Foundation
 
 class PinedUsersViewModel: ObservableObject {
+    
     @Published var users: [User] = [FakeDataManager.instance.getUser()]
     
     init() {
@@ -14,7 +15,6 @@ class PinedUsersViewModel: ObservableObject {
     func deleteUser(_ user: User) {
         users = users.filter { $0 != user }
         saveUsers()
-        getUsers()
     }
     
     func saveUsers() {

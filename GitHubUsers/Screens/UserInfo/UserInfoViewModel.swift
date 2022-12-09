@@ -22,7 +22,7 @@ class UserInfoViewModel: ObservableObject {
     @Published var starsCount = 0
     @Published var isShowingRepoInfo = false
     @Published var isPinned = false
-    let defoultImage: UIImage = UIImage(named: "Octocat")!
+    let defaultImage: UIImage = UIImage(named: "Octocat")!
     
     
     private var pinnedUsers = UserDefaultsDataManager.instance.getPinnedUsers()
