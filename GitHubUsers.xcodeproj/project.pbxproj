@@ -17,6 +17,7 @@
 		0E416CF729211B6A000983CD /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E416CF629211B6A000983CD /* Repository.swift */; };
 		0E4FA0152924E60100CC3F4D /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4FA0142924E60100CC3F4D /* UsersViewModel.swift */; };
 		0E9BD4FC292212B40029AC2B /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9BD4FB292212B40029AC2B /* UserRowView.swift */; };
+		0E9FE453294322410018E09C /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9FE452294322410018E09C /* View + Extension.swift */; };
 		0EA5742C2923638E00A288AC /* FindUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA5742B2923638E00A288AC /* FindUserView.swift */; };
 		0EA5742F292363B900A288AC /* FindUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA5742E292363B900A288AC /* FindUserViewModel.swift */; };
 		0EB94AF3291E23D100F43FE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB94AF2291E23D100F43FE9 /* User.swift */; };
@@ -45,6 +46,7 @@
 		0E416CF629211B6A000983CD /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		0E4FA0142924E60100CC3F4D /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		0E9BD4FB292212B40029AC2B /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
+		0E9FE452294322410018E09C /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		0EA5742B2923638E00A288AC /* FindUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserView.swift; sourceTree = "<group>"; };
 		0EA5742E292363B900A288AC /* FindUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserViewModel.swift; sourceTree = "<group>"; };
 		0EB94AF2291E23D100F43FE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				0E29AD26291D2439008476A8 /* More */,
+				0E9FE451294322290018E09C /* Extensions */,
 				0E29AD2A291D2474008476A8 /* Managers */,
 				0EB94AF1291E23BC00F43FE9 /* Models */,
 				0EF767EA29426B6500A20E7B /* Views */,
@@ -174,6 +177,14 @@
 				0E416CF429211826000983CD /* RepoRowView.swift */,
 			);
 			path = RepoRow;
+			sourceTree = "<group>";
+		};
+		0E9FE451294322290018E09C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E9FE452294322410018E09C /* View + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0EA5742A2923637C00A288AC /* FindUser */ = {
@@ -341,6 +352,7 @@
 				0E416CF329210AD7000983CD /* UserInfoViewModel.swift in Sources */,
 				0EB94AF3291E23D100F43FE9 /* User.swift in Sources */,
 				0E416CF729211B6A000983CD /* Repository.swift in Sources */,
+				0E9FE453294322410018E09C /* View + Extension.swift in Sources */,
 				0EF767E72942698A00A20E7B /* PinedUsersView.swift in Sources */,
 				0EC7C6C329430A770096F31A /* UserDefaultsDataManager.swift in Sources */,
 				0E29AD32291D24B0008476A8 /* GitHubApiManager.swift in Sources */,

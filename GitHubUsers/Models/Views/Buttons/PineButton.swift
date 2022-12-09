@@ -6,7 +6,6 @@ struct PineButton: View {
     var body: some View {
         Button(action: {
             action()
-            isTapeed.toggle()
         }) {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 35, height:  35)

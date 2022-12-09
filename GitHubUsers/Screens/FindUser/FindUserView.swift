@@ -47,7 +47,10 @@ extension FindUserView {
     }
     
     private var findButton: some View {
-        Button(action: vm.findUser) {
+        Button(action: {
+            vm.findUser()
+            hideKeyboard()
+        }) {
             RoundedRectangle(cornerRadius: 15)
                 .frame(width: width / 2, height: 45)
                 .overlay {

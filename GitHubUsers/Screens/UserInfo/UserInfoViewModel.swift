@@ -34,7 +34,8 @@ class UserInfoViewModel: ObservableObject {
     
     func pinUser() {
         if isPinned {
-           deleteUser(user)
+            isPinned = false
+            deleteUser(user)
         } else {
             user.isPinned = true
             isPinned = true
