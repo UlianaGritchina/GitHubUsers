@@ -5,8 +5,8 @@ struct PineButton: View {
     let action: () -> ()
     var body: some View {
         Button(action: {
-            isTapeed.toggle()
             action()
+            isTapeed.toggle()
         }) {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 35, height:  35)
