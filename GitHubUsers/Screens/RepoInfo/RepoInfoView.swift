@@ -8,15 +8,16 @@ struct RepoInfoView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Image(uiImage: UIImage(data: userAvatarImageData) ?? UIImage(named: "Octocat")!)
-                    .resizable()
-                    .scaledToFill()
-                Rectangle()
-                    .foregroundColor(Color("sheet"))
-                    .opacity(0.5)
-                    .background(.ultraThinMaterial)
+                background
+                VStack() {
+                    Text(repo.description ?? "")
+                        .font(.title)
+                        .padding()
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                }
+                .padding(.horizontal)
             }
-            .ignoresSafeArea()
             .navigationTitle(repo.name ?? "")
         }
     }
@@ -29,6 +30,24 @@ struct RepoInfoView_Previews: PreviewProvider {
             userAvatarImageData: Data()
         )
     }
+}
+
+extension RepoInfoView {
+    
+    private var background: some View {
+        ZStack {
+            Image(uiImage: UIImage(data: userAvatarImageData) ?? UIImage(named: "Octocat")!)
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width)
+                .scaledToFill()
+            Rectangle()
+                .foregroundColor(Color("sheet"))
+                .opacity(0.5)
+                .background(.ultraThinMaterial)
+        }
+        .ignoresSafeArea()
+    }
+    
 }
 
 
