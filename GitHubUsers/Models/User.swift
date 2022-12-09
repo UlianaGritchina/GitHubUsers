@@ -14,5 +14,6 @@ struct User: Hashable, Codable {
     let following: Int?
     let created_at: String?
     var avatarImageData: Data?
+    var isPinned: Bool?
 }
 

@@ -230,8 +230,8 @@
 		0EF767E52942696D00A20E7B /* PinedUsers */ = {
 			isa = PBXGroup;
 			children = (
-				0EF767E62942698A00A20E7B /* PinedUsersView.swift */,
 				0EF767EB29426BC700A20E7B /* PinedUsersViewModel.swift */,
+				0EF767E62942698A00A20E7B /* PinedUsersView.swift */,
 			);
 			path = PinedUsers;
 			sourceTree = "<group>";

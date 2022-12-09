@@ -4,7 +4,10 @@ struct PineButton: View {
     @Binding var isTapeed: Bool
     let action: () -> ()
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            isTapeed.toggle()
+            action()
+        }) {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 35, height:  35)
                 .foregroundColor(isTapeed ? .blue.opacity(0.8) : .black.opacity(0.5))

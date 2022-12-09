@@ -15,23 +15,41 @@ class UserInfoViewModel: ObservableObject {
     
     
     @Published var repos: [Repository] = []
-    @Published var isPinnedUser = false
+    var isPinnedUser: Bool {
+        user.isPinned ?? false
+    }
     @Published var loadRepos: NetworkState = .none
     @Published var starsCount = 0
     @Published var isShowingRepoInfo = false
-    
+    @Published var isPinned = false
     let defoultImage: UIImage = UIImage(named: "Octocat")!
+    
     
     private var pinnedUsers = UserDefaultsDataManager.instance.getPinnedUsers()
     
     init(user: User) {
         self.user = user
+        isPinned = user.isPinned ?? false
     }
     
     func pinUser() {
-        pinnedUsers.append(user)
+        if isPinned {
+           deleteUser(user)
+        } else {
+            user.isPinned = true
+            isPinned = true
+            pinnedUsers.append(user)
+        }
+        saveUsers()
+    }
+    
+    func deleteUser(_ user: User) {
+        pinnedUsers = pinnedUsers.filter { $0 != user }
+        saveUsers()
+    }
+    
+    func saveUsers() {
         UserDefaultsDataManager.instance.savePinedUsers(pinnedUsers)
-        isPinnedUser.toggle()
     }
     
     func getRepos() {

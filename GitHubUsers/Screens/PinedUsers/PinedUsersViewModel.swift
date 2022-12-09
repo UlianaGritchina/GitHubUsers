@@ -11,4 +11,15 @@ class PinedUsersViewModel: ObservableObject {
         users = UserDefaultsDataManager.instance.getPinnedUsers()
     }
     
+    func deleteUser(_ user: User) {
+        users = users.filter { $0 != user }
+        saveUsers()
+        getUsers()
+    }
+    
+    func saveUsers() {
+        UserDefaultsDataManager.instance.savePinedUsers(users)
+        getUsers()
+    }
+    
 }

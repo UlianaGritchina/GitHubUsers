@@ -14,7 +14,7 @@ struct UserInfoView: View {
             }
             VStack {
                 HStack {
-                    PineButton(isTapeed: $vm.isPinnedUser, action: vm.pinUser)
+                    PineButton(isTapeed: $vm.isPinned, action: vm.pinUser)
                     Spacer()
                     CloseButton(action: {presentationMode.wrappedValue.dismiss()})
                 }
