@@ -9,6 +9,9 @@ struct PinedUsersView: View {
             }
             .navigationTitle("Pined users")
         }
+        .onAppear {
+            vm.getUsers()
+        }
     }
 }
 

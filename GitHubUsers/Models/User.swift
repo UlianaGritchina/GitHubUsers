@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct User: Hashable, Decodable {
+struct User: Hashable, Codable {
     let login: String?
     let avatar_url: String?
     let html_url: String?
