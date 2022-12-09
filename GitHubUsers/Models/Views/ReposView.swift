@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct ReposView: View {
+    let avatarImageData: Data
+    @State private var selectedRepo: Repository = FakeDataManager.instance.getRepo()
+    @State private var isShowingRepoInfo = false
     let repos: [Repository]
     let stars: Int
     var body: some View {
@@ -10,16 +13,27 @@ struct ReposView: View {
                 HStack {
                     ForEach(repos, id: \.self) { repo in
                         RepoRowView(repo: repo).padding()
+                            .onTapGesture {
+                                selectedRepo = repo
+                                withAnimation(.spring()) {
+                                    isShowingRepoInfo.toggle()
+                                }
+                            }
                     }
                 }
             }
+        }
+        .sheet(isPresented: $isShowingRepoInfo) {
+            RepoInfoView(repo: $selectedRepo, userAvatarImageData: avatarImageData)
         }
     }
 }
 
 struct ReposView_Previews: PreviewProvider {
     static var previews: some View {
-        ReposView(repos: FakeDataManager.instance.getRepos(), stars: 5)
+        ReposView(avatarImageData: Data(),
+                  repos: FakeDataManager.instance.getRepos(),
+                  stars: 5)
     }
 }
 

@@ -22,15 +22,17 @@ struct UserInfoView: View {
                 
                 ScrollView() {
                     UserBaseInfoCardView(user: vm.user).padding(.top, height / 3.2)
-                    
                     if vm.loadRepos == .loading {
                         ProgressView()
                     } else {
-                        ReposView(repos: vm.repos, stars: vm.starsCount)
+                        ReposView(
+                            avatarImageData: vm.user.avatarImageData ?? Data(),
+                            repos: vm.repos,
+                            stars: vm.starsCount
+                        )
                     }
                 }
             }
-            RepoInfoView(repo: vm.selectedRepo, isShowingRepoInfo: $vm.isShowingRepoInfo)
         }
         .onAppear { vm.getRepos() }
     }
