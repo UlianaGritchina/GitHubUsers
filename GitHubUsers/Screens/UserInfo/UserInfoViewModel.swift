@@ -2,8 +2,6 @@ import SwiftUI
 
 class UserInfoViewModel: ObservableObject {
     
-    var user: User = FakeDataManager.instance.getUser()
-    
     @Published var  selectedRepo =  Repository(
         name: "name",
         description: "des",
@@ -13,17 +11,22 @@ class UserInfoViewModel: ObservableObject {
         visibility: "public"
     )
     
-    
     @Published var repos: [Repository] = []
-    var isPinnedUser: Bool {
-        user.isPinned ?? false
-    }
     @Published var loadRepos: NetworkState = .none
     @Published var starsCount = 0
     @Published var isShowingRepoInfo = false
     @Published var isPinned = false
+    
+    var user: User = FakeDataManager.instance.getUser()
     let defaultImage: UIImage = UIImage(named: "Octocat")!
     
+    var avatarImage: Image {
+        Image(uiImage: UIImage(data: user.avatarImageData ?? Data()) ?? defaultImage)
+    }
+    
+    var isPinnedUser: Bool {
+        user.isPinned ?? false
+    }
     
     private var pinnedUsers = UserDefaultsDataManager.instance.getPinnedUsers()
     

@@ -9,7 +9,7 @@ struct UsersView: View {
                     ProgressView()
                 }
                 if vm.networkState == .error {
-                    Text("Error. Try it later.")
+                    Text("Error")
                 }
                 UsersListView(users: vm.users)
                     .opacity(vm.networkState == .loaded ? 1 : 0)

@@ -54,13 +54,7 @@ class UsersViewModel: ObservableObject {
                 }
                 .store(in: &self.cancellables)
         }
-        withAnimation {
-            if users.count != 0 {
-                networkState = .loaded
-            } else {
-                networkState = .error
-            }
-        }
+        networkState = users.count == 0 ? .error : .loaded
     }
     
     func setUserAvatarImageData(_ user: User) {

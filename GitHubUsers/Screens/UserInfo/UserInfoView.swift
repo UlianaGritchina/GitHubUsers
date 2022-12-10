@@ -12,27 +12,21 @@ struct UserInfoView: View {
                 avatarImageView
                 Spacer()
             }
-            VStack {
-                HStack {
-                    PineButton(isTapeed: $vm.isPinned, action: vm.pinUser)
-                    Spacer()
-                    CloseButton(action: {presentationMode.wrappedValue.dismiss()})
-                }
-                .padding([.horizontal, .top])
-                
-                ScrollView() {
-                    UserBaseInfoCardView(user: vm.user).padding(.top, height / 3.2)
-                    if vm.loadRepos == .loading {
-                        ProgressView()
-                    } else {
-                        ReposView(
-                            avatarImageData: vm.user.avatarImageData ?? Data(),
-                            repos: vm.repos,
-                            stars: vm.starsCount
-                        )
-                    }
+            ScrollView() {
+                UserBaseInfoCardView(user: vm.user)
+                    .padding(.top, height / 2.6)
+                    .padding(.horizontal)
+                if vm.loadRepos == .loading {
+                    ProgressView()
+                } else {
+                    ReposView(
+                        avatarImageData: vm.user.avatarImageData ?? Data(),
+                        repos: vm.repos,
+                        stars: vm.starsCount
+                    )
                 }
             }
+            .overlay(buttonsView, alignment: .top)
         }
         .onAppear { vm.getRepos() }
     }
@@ -52,24 +46,29 @@ struct UserInfoView_Previews: PreviewProvider {
 extension UserInfoView {
     
     private var avatarImageView: some View {
-        Image(uiImage: UIImage(data: vm.user.avatarImageData ?? Data()) ?? vm.defaultImage)
+        vm.avatarImage
             .resizable()
             .scaledToFill()
-            .overlay {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Text(vm.user.name ?? vm.user.login ?? "")
-                            .bold()
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .padding(.horizontal)
-                        Spacer()
-                    }
-                    .background(.ultraThinMaterial)
-                }
-            }
+            .overlay(usernameView, alignment: .bottom)
             .frame(width: width, height: height / 4)
+    }
+    
+    private var usernameView: some View {
+        Text(vm.user.name ?? vm.user.login ?? "")
+            .bold()
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .background(.ultraThinMaterial)
+    }
+    
+    private var buttonsView: some View {
+        HStack {
+            PineButton(isTapeed: $vm.isPinned, action: vm.pinUser)
+            Spacer()
+            CloseButton(action: {presentationMode.wrappedValue.dismiss()})
+        }
+        .padding()
     }
     
 }
