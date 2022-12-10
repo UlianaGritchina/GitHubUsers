@@ -40,7 +40,7 @@ extension FindUserView {
                 .overlay {
                     Text("Find")
                         .font(.headline)
-                        .foregroundColor(Color("buttonsTitle"))
+                        .foregroundColor(.buttonsTitle)
                 }
         }
     }

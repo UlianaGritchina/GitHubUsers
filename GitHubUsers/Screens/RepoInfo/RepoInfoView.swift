@@ -41,7 +41,7 @@ extension RepoInfoView {
                 .frame(width: UIScreen.main.bounds.width)
                 .scaledToFill()
             Rectangle()
-                .foregroundColor(Color("sheet"))
+                .foregroundColor(.card)
                 .opacity(0.5)
                 .background(.ultraThinMaterial)
         }

@@ -26,8 +26,8 @@ extension UserRowView {
         Button(action: { isShowingUserInfoView.toggle() }) {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: width - 40, height: width / 3)
-                .foregroundColor(Color("card"))
-                .shadow(color: Color("shadow"), radius: 5)
+                .foregroundColor(.card)
+                .shadow(color: .shadow, radius: 5)
                 .blur(radius: 0.5)
                 .overlay { userPrewiewContent.padding() }
         }
@@ -46,7 +46,7 @@ extension UserRowView {
                 Text(user.bio ?? "")
                 Text(user.location ?? "")
             }
-            .foregroundColor(Color("text"))
+            .foregroundColor(.text)
             Spacer()
         }
     }

@@ -29,9 +29,9 @@ struct UserBaseInfoCardView: View {
         .padding()
         .frame(width: UIScreen.main.bounds.width - 20)
         .background(
-            Color("card")
+            Color.card
                 .cornerRadius(10)
-                .shadow(color: Color("shadow"), radius: 5)
+                .shadow(color: .shadow, radius: 5)
         )
     }
     

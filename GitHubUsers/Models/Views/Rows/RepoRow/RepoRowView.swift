@@ -7,8 +7,8 @@ struct RepoRowView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .frame( width: width / 1.4, height: height / 6)
-            .foregroundColor(Color("card"))
-            .shadow(color: Color("shadow"), radius: 5)
+            .foregroundColor(.card)
+            .shadow(color: .shadow, radius: 5)
             .overlay { contentView.padding() }
     }
 }
