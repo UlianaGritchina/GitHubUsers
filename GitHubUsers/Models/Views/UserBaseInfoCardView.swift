@@ -17,11 +17,11 @@ struct UserBaseInfoCardView: View {
                 if let following = user.following {
                     Text("Following: \(following)")
                 }
-                if let date = user.created_at {
-                    Text("Joined GitHub \(date)")
-                        .font(.subheadline)
-                        .padding(.top, 1)
-                }
+                
+                Text("Joined GitHub \(getJoinedDate(from: user.created_at))")
+                    .font(.subheadline)
+                    .padding(.top, 1)
+                
             }
             .font(.system(size: UIScreen.main.bounds.height / 40))
             Spacer()
@@ -34,6 +34,25 @@ struct UserBaseInfoCardView: View {
                 .shadow(color: .shadow, radius: 5)
         )
     }
+    
+   private func getJoinedDate(from dateString: String?) -> String {
+        guard let dateString = dateString else { return "" }
+        var newDateString = ""
+        for char in dateString {
+            if char != "T" {
+                newDateString.append(char)
+            } else {
+                break
+            }
+        }
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd, yyyy"
+        guard let date = dateFormatterGet.date(from: newDateString) else { return "" }
+        return dateFormatterPrint.string(from: date)
+    }
+    
     
 }
 
