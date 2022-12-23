@@ -5,29 +5,30 @@ struct UserInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
+    @State private var opacity = 0
     var body: some View {
-        ZStack {
-            VStack {
-                avatarImageView
-                Spacer()
-            }
-            ScrollView() {
-                UserBaseInfoCardView(user: vm.user)
-                    .padding(.top, height / 2.6)
-                    .padding(.horizontal)
-                if vm.loadRepos == .loading {
-                    ProgressView()
-                } else {
-                    ReposView(
-                        avatarImageData: vm.user.avatarImageData ?? Data(),
-                        repos: vm.repos,
-                        stars: vm.starsCount
-                    )
+        ScrollView {
+            VStack(spacing: 0) {
+                GeometryReader { geometry in
+                    image(geo: geometry)
                 }
+                .frame(
+                    width: UIScreen.main.bounds.width,
+                    height: UIScreen.main.bounds.height / 2.7
+                )
+                VStack {
+                    UserBaseInfoCardView(user: vm.user)
+                    ReposView(avatarImageData: vm.user.avatarImageData ?? Data(), repos: vm.repos, stars: vm.starsCount)
+                    Spacer()
+                }
+                .padding()
+                .background(Color.card)
             }
-            .overlay(buttonsView, alignment: .top)
         }
-        .onAppear { vm.getRepos() }
+        .overlay(navBar, alignment: .top)
+        .onAppear {
+            vm.getRepos()
+        }
     }
 }
 
@@ -68,6 +69,56 @@ extension UserInfoView {
             CloseButton(action: {presentationMode.wrappedValue.dismiss()})
         }
         .padding()
+    }
+    
+    private func image(geo: GeometryProxy) -> some View {
+        vm.avatarImage
+            .resizable()
+            .scaledToFill()
+            .overlay(usernameView, alignment: .bottom)
+            .frame(
+                width: UIScreen.main.bounds.width,
+                height: geo.frame(in: .global).minY > 0
+                ?  geo.frame(in: .global).minY + (UIScreen.main.bounds.height / 3)
+                : UIScreen.main.bounds.height / 3
+            )
+            .offset(y: -geo.frame(in: .global).minY)
+            .onChange(of: geo.frame(in: .global).minY) { newValue in
+                DispatchQueue.main.async {
+                    withAnimation {
+                        if newValue <= -170 {
+                            opacity = 1
+                        } else {
+                            opacity = 0
+                        }
+                    }
+                }
+            }
+    }
+    
+    private var navBar: some View {
+        HStack {
+            backButton
+            Spacer()
+            Text(vm.user.name ?? "")
+                .font(.headline)
+                .opacity(Double(opacity))
+            Spacer()
+            PineButton(isTapeed: $vm.isPinned, action: vm.pinUser)
+        }
+        .padding()
+        .background(.ultraThinMaterial.opacity(Double(opacity)))
+    }
+    
+    private var backButton: some View {
+        Button(action: { presentationMode.wrappedValue.dismiss() }) {
+            Circle()
+                .foregroundColor(.white)
+                .frame(width: 35, height: 35)
+                .overlay(Image(systemName: "chevron.down")
+                    .foregroundColor(.black))
+                .font(.headline)
+        }
     }
     
 }

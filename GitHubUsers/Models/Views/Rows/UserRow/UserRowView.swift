@@ -7,9 +7,9 @@ struct UserRowView: View {
     private let height = UIScreen.main.bounds.height
     var body: some View {
         userPreviewCard
-            .sheet(isPresented: $isShowingUserInfoView, content: {
+            .fullScreenCover(isPresented: $isShowingUserInfoView) {
                 UserInfoView(vm: UserInfoViewModel(user: user ))
-            })
+            }
     }
 }
 

@@ -7,11 +7,11 @@ struct PineButton: View {
         Button(action: action) {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: 35, height:  35)
-                .foregroundColor(isTapeed ? .blue.opacity(0.8) : .black.opacity(0.5))
+                .foregroundColor(.white)
                 .overlay {
-                    Image(systemName: "pin.fill")
-                        .font(.system(size: 15))
-                        .foregroundColor(.white)
+                    Image(systemName: isTapeed ? "pin.fill" : "pin")
+                        .font(.headline)
+                        .foregroundColor(.blue)
                 }
         }
     }
