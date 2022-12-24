@@ -18,13 +18,18 @@ struct UserInfoView: View {
                 )
                 VStack {
                     UserBaseInfoCardView(user: vm.user)
-                    ReposView(avatarImageData: vm.user.avatarImageData ?? Data(), repos: vm.repos, stars: vm.starsCount)
+                    if vm.loadRepos == .loaded {
+                        ReposView(avatarImageData: vm.user.avatarImageData ?? Data(), repos: vm.repos, stars: vm.starsCount)
+                    } else {
+                        ProgressView()
+                    }
                     Spacer()
                 }
-                .padding()
+                .padding(.top)
                 .background(Color.card)
             }
         }
+        .background(Color.card)
         .overlay(navBar, alignment: .top)
         .onAppear {
             vm.getRepos()
@@ -86,7 +91,7 @@ extension UserInfoView {
             .onChange(of: geo.frame(in: .global).minY) { newValue in
                 DispatchQueue.main.async {
                     withAnimation {
-                        if newValue <= -170 {
+                        if newValue <= -197 {
                             opacity = 1
                         } else {
                             opacity = 0

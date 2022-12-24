@@ -27,7 +27,6 @@
 		0EA5742F292363B900A288AC /* FindUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA5742E292363B900A288AC /* FindUserViewModel.swift */; };
 		0EB94AF3291E23D100F43FE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB94AF2291E23D100F43FE9 /* User.swift */; };
 		0EBB9508292364E2001783EF /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB9507292364E2001783EF /* UsersView.swift */; };
-		0EC23C1C2927686C00FF9A3A /* RepoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC23C1B2927686C00FF9A3A /* RepoInfoView.swift */; };
 		0EC7C6C329430A770096F31A /* UserDefaultsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7C6C229430A770096F31A /* UserDefaultsDataManager.swift */; };
 		0EF767E4294268DE00A20E7B /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767E3294268DE00A20E7B /* StarterView.swift */; };
 		0EF767E72942698A00A20E7B /* PinnedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767E62942698A00A20E7B /* PinnedUsersView.swift */; };
@@ -61,7 +60,6 @@
 		0EA5742E292363B900A288AC /* FindUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserViewModel.swift; sourceTree = "<group>"; };
 		0EB94AF2291E23D100F43FE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0EBB9507292364E2001783EF /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
-		0EC23C1B2927686C00FF9A3A /* RepoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoInfoView.swift; sourceTree = "<group>"; };
 		0EC7C6C229430A770096F31A /* UserDefaultsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataManager.swift; sourceTree = "<group>"; };
 		0EF767E3294268DE00A20E7B /* StarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterView.swift; sourceTree = "<group>"; };
 		0EF767E62942698A00A20E7B /* PinnedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedUsersView.swift; sourceTree = "<group>"; };
@@ -107,8 +105,7 @@
 				0E9FE451294322290018E09C /* Extensions */,
 				0E29AD2A291D2474008476A8 /* Managers */,
 				0EB94AF1291E23BC00F43FE9 /* Models */,
-				0EF767EA29426B6500A20E7B /* Views */,
-				0E29AD27291D244C008476A8 /* Screens */,
+				0E2D660A295741270007629E /* Core */,
 			);
 			path = GitHubUsers;
 			sourceTree = "<group>";
@@ -131,19 +128,6 @@
 			path = More;
 			sourceTree = "<group>";
 		};
-		0E29AD27291D244C008476A8 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				0EF767E2294268C200A20E7B /* Starter */,
-				0EBB9506292364D1001783EF /* Users */,
-				0EA5742A2923637C00A288AC /* FindUser */,
-				0EF767E52942696D00A20E7B /* PinedUsers */,
-				0E29AD29291D2464008476A8 /* UserInfo */,
-				0EC23C1D29276D5100FF9A3A /* RepoInfo */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		0E29AD29291D2464008476A8 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +145,19 @@
 				0EC7C6C229430A770096F31A /* UserDefaultsDataManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		0E2D660A295741270007629E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0EF767EA29426B6500A20E7B /* Components */,
+				0EF767E2294268C200A20E7B /* Starter */,
+				0EBB9506292364D1001783EF /* Users */,
+				0EA5742A2923637C00A288AC /* FindUser */,
+				0EF767E52942696D00A20E7B /* PinedUsers */,
+				0E29AD29291D2464008476A8 /* UserInfo */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		0E9BD4FD292215830029AC2B /* UserRow */ = {
@@ -224,14 +221,6 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
-		0EC23C1D29276D5100FF9A3A /* RepoInfo */ = {
-			isa = PBXGroup;
-			children = (
-				0EC23C1B2927686C00FF9A3A /* RepoInfoView.swift */,
-			);
-			path = RepoInfo;
-			sourceTree = "<group>";
-		};
 		0EF767E2294268C200A20E7B /* Starter */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,20 +238,19 @@
 			path = PinedUsers;
 			sourceTree = "<group>";
 		};
-		0EF767EA29426B6500A20E7B /* Views */ = {
+		0EF767EA29426B6500A20E7B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0E9BD4FE292215A10029AC2B /* Rows */,
+				0EF767F52942715500A20E7B /* Buttons */,
 				0E8AAD1829445BAE008B73B9 /* LoadingView.swift */,
 				0E9FE456294348D90018E09C /* ReposView.swift */,
 				0E9FE45829434A4D0018E09C /* StarsView.swift */,
-				0E9BD4FE292215A10029AC2B /* Rows */,
-				0EF767F52942715500A20E7B /* Buttons */,
 				0EF767F129426F3000A20E7B /* UserBaseInfoCardView.swift */,
 				0EF767E829426A8700A20E7B /* UsersListView.swift */,
 				0E9FE45429433D950018E09C /* SearchUserTextFieldView.swift */,
 			);
-			name = Views;
-			path = Models/Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		0EF767F52942715500A20E7B /* Buttons */ = {
@@ -344,7 +332,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EC23C1C2927686C00FF9A3A /* RepoInfoView.swift in Sources */,
 				0E8AAD1B29446250008B73B9 /* Color + Extension.swift in Sources */,
 				0EA5742C2923638E00A288AC /* FindUserView.swift in Sources */,
 				0EF767E4294268DE00A20E7B /* StarterView.swift in Sources */,
