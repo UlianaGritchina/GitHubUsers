@@ -12,7 +12,6 @@ struct UsersView: View {
                     Text("Error")
                 }
                 UsersListView(users: vm.users)
-                    .opacity(vm.networkState == .loaded ? 1 : 0)
             }
             .navigationTitle("Users")
         }
