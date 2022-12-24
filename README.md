@@ -1,5 +1,5 @@
 # GitHubUsers
-SwiftUI, Combine, MVVM, GitHub api.
+SwiftUI, Combine, MVVM, GitHub api, parallax effect.
 
 ![GitHubUserLight-modified](https://user-images.githubusercontent.com/95241900/206838502-cf674a83-80c5-4f90-85e4-bde7b4689786.png)
 
