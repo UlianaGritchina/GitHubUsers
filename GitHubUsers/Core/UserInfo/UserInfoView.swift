@@ -19,7 +19,11 @@ struct UserInfoView: View {
                 VStack {
                     UserBaseInfoCardView(user: vm.user)
                     if vm.loadRepos == .loaded {
-                        ReposView(avatarImageData: vm.user.avatarImageData ?? Data(), repos: vm.repos, stars: vm.starsCount)
+                        ReposView(
+                            avatarImageData: vm.user.avatarImageData ?? Data(),
+                            repos: vm.repos,
+                            stars: vm.starsCount
+                        )
                     } else {
                         ProgressView()
                     }
