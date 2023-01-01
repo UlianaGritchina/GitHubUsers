@@ -29,12 +29,11 @@
 		0EB94AF3291E23D100F43FE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB94AF2291E23D100F43FE9 /* User.swift */; };
 		0EBB9508292364E2001783EF /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB9507292364E2001783EF /* UsersView.swift */; };
 		0EC7C6C329430A770096F31A /* UserDefaultsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7C6C229430A770096F31A /* UserDefaultsDataManager.swift */; };
+		0EDF7DF529621112003C201A /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDF7DF429621112003C201A /* CircleButton.swift */; };
 		0EF767E4294268DE00A20E7B /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767E3294268DE00A20E7B /* StarterView.swift */; };
 		0EF767E72942698A00A20E7B /* PinnedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767E62942698A00A20E7B /* PinnedUsersView.swift */; };
 		0EF767E929426A8700A20E7B /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767E829426A8700A20E7B /* UsersListView.swift */; };
 		0EF767EC29426BC700A20E7B /* PinedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767EB29426BC700A20E7B /* PinedUsersViewModel.swift */; };
-		0EF767EE29426E5700A20E7B /* PineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767ED29426E5700A20E7B /* PineButton.swift */; };
-		0EF767F029426EAA00A20E7B /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767EF29426EAA00A20E7B /* CloseButton.swift */; };
 		0EF767F229426F3000A20E7B /* UserBaseInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767F129426F3000A20E7B /* UserBaseInfoCardView.swift */; };
 		0EF767F429426FCD00A20E7B /* FakeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF767F329426FCD00A20E7B /* FakeDataManager.swift */; };
 /* End PBXBuildFile section */
@@ -63,12 +62,11 @@
 		0EB94AF2291E23D100F43FE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0EBB9507292364E2001783EF /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
 		0EC7C6C229430A770096F31A /* UserDefaultsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDataManager.swift; sourceTree = "<group>"; };
+		0EDF7DF429621112003C201A /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		0EF767E3294268DE00A20E7B /* StarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterView.swift; sourceTree = "<group>"; };
 		0EF767E62942698A00A20E7B /* PinnedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedUsersView.swift; sourceTree = "<group>"; };
 		0EF767E829426A8700A20E7B /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
 		0EF767EB29426BC700A20E7B /* PinedUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinedUsersViewModel.swift; sourceTree = "<group>"; };
-		0EF767ED29426E5700A20E7B /* PineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PineButton.swift; sourceTree = "<group>"; };
-		0EF767EF29426EAA00A20E7B /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		0EF767F129426F3000A20E7B /* UserBaseInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBaseInfoCardView.swift; sourceTree = "<group>"; };
 		0EF767F329426FCD00A20E7B /* FakeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,8 +257,7 @@
 		0EF767F52942715500A20E7B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				0EF767ED29426E5700A20E7B /* PineButton.swift */,
-				0EF767EF29426EAA00A20E7B /* CloseButton.swift */,
+				0EDF7DF429621112003C201A /* CircleButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -341,14 +338,12 @@
 				0E4FA0152924E60100CC3F4D /* UsersViewModel.swift in Sources */,
 				0EF767F229426F3000A20E7B /* UserBaseInfoCardView.swift in Sources */,
 				0EA5742F292363B900A288AC /* FindUserViewModel.swift in Sources */,
-				0EF767EE29426E5700A20E7B /* PineButton.swift in Sources */,
 				0E29AD19291D241C008476A8 /* GitHubUsersApp.swift in Sources */,
 				0E8AAD1929445BAE008B73B9 /* LoadingView.swift in Sources */,
 				0E416CF529211826000983CD /* RepoRowView.swift in Sources */,
 				0EF767E929426A8700A20E7B /* UsersListView.swift in Sources */,
 				0E9FE457294348D90018E09C /* ReposView.swift in Sources */,
 				0E9BD4FC292212B40029AC2B /* UserRowView.swift in Sources */,
-				0EF767F029426EAA00A20E7B /* CloseButton.swift in Sources */,
 				0E2D660C295741D20007629E /* RepoInfoView.swift in Sources */,
 				0E416CF329210AD7000983CD /* UserInfoViewModel.swift in Sources */,
 				0E9FE45929434A4D0018E09C /* StarsView.swift in Sources */,
@@ -356,6 +351,7 @@
 				0E416CF729211B6A000983CD /* Repository.swift in Sources */,
 				0E9FE453294322410018E09C /* View + Extension.swift in Sources */,
 				0EF767E72942698A00A20E7B /* PinnedUsersView.swift in Sources */,
+				0EDF7DF529621112003C201A /* CircleButton.swift in Sources */,
 				0E9FE45529433D950018E09C /* SearchUserTextFieldView.swift in Sources */,
 				0EC7C6C329430A770096F31A /* UserDefaultsDataManager.swift in Sources */,
 				0E29AD32291D24B0008476A8 /* GitHubApiManager.swift in Sources */,

@@ -20,6 +20,8 @@ struct UserRow_Previews: PreviewProvider {
 }
 
 
+//MARK: - VIEW COMPONENTS
+
 extension UserRowView {
     
     private var userPreviewCard: some View {
@@ -29,11 +31,11 @@ extension UserRowView {
                 .foregroundColor(.card)
                 .shadow(color: .shadow, radius: 5)
                 .blur(radius: 0.5)
-                .overlay { userPrewiewContent.padding() }
+                .overlay { userPreviewContent.padding() }
         }
     }
     
-    private var userPrewiewContent: some View {
+    private var userPreviewContent: some View {
         HStack {
             Image(uiImage: UIImage(data: user.avatarImageData ?? Data()) ?? UIImage(named: "Octocat")!)
                 .resizable()

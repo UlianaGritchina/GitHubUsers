@@ -20,6 +20,8 @@ struct RepoRowView_Previews: PreviewProvider {
 }
 
 
+//MARK: - VIEW COMPONENTS
+
 extension RepoRowView {
     private var contentView: some View {
         HStack {

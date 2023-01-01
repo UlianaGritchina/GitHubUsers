@@ -9,7 +9,7 @@ struct UsersView: View {
                     ProgressView()
                 }
                 if vm.networkState == .error {
-                    Text("Error")
+                    Text("🛑 Error 🛑").font(.headline)
                 }
                 UsersListView(users: vm.users)
             }

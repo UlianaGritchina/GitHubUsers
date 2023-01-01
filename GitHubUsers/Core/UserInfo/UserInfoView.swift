@@ -5,7 +5,7 @@ struct UserInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     private let width = UIScreen.main.bounds.width
     private let height = UIScreen.main.bounds.height
-    @State private var opacity = 0
+    @State private var opacity: Double = 0
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -71,15 +71,6 @@ extension UserInfoView {
             .background(.ultraThinMaterial)
     }
     
-    private var buttonsView: some View {
-        HStack {
-            PineButton(isTapeed: $vm.isPinned, action: vm.pinUser)
-            Spacer()
-            CloseButton(action: {presentationMode.wrappedValue.dismiss()})
-        }
-        .padding()
-    }
-    
     private func image(geo: GeometryProxy) -> some View {
         vm.avatarImage
             .resizable()
@@ -107,16 +98,22 @@ extension UserInfoView {
     
     private var navBar: some View {
         HStack {
-            backButton
+            CircleButton(
+                image: Image(systemName: "xmark"),
+                action: { presentationMode.wrappedValue.dismiss() }
+            )
             Spacer()
             Text(vm.user.name ?? "")
                 .font(.headline)
-                .opacity(Double(opacity))
+                .opacity(opacity)
             Spacer()
-            PineButton(isTapeed: $vm.isPinned, action: vm.pinUser)
+            CircleButton(
+                image: Image(systemName: vm.isPinned ? "pin.fill" : "pin"),
+                action: { vm.pinUser() }
+            )
         }
         .padding()
-        .background(.ultraThinMaterial.opacity(Double(opacity)))
+        .background(.ultraThinMaterial.opacity(opacity))
     }
     
     private var backButton: some View {
